@@ -1,0 +1,19 @@
+branch-defaults:
+  master:
+    environment: springboot-api-tutorial-dev
+environment-defaults:
+  springboot-api-tutorial-dev:
+    branch: null
+    repository: null
+global:
+  application_name: springboot-api-tutorial
+  default_ec2_keyname: sgwebfreelancer
+  default_platform: Multi-container Docker running on 64bit Amazon Linux
+  default_region: ap-southeast-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: git
+  workspace_type: Application

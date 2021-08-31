@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - api
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    platform: linux/amd64
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssw0rd
+      - MYSQL_DATABASE=spbapidb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - mysqldb:/var/lib/mysql
+  api:
+    container_name: api
+    image: spring-boot-api-tutorial-img
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - /var/app
+    restart: always
+
+volumes:
+  mysqldb:
